@@ -2,6 +2,8 @@
 """
 
 import pygame
+import graphics
+from sprite import Sprite
 
 class Game(object):
     """Game class
@@ -16,8 +18,10 @@ class Game(object):
         self.fps = fps
         self.size = width, height
 
-        self.screen = pygame.display.set_mode(self.size)
+        self.graphics = graphics.Graphics(self.size)
         self.clock = pygame.time.Clock()
+
+        self.sprite = Sprite("MyChar.bmp", 0, 0, 32, 32)
 
     def loop(self):
         """The main event loop
@@ -45,4 +49,5 @@ class Game(object):
     def draw(self):
         """Draw the objects
         """
-        pass
+        self.sprite.draw(self.graphics, 320, 240)
+        self.graphics.flip()
