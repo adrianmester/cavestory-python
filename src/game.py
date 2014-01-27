@@ -9,6 +9,8 @@ class Game(object):
     """Game class
     """
 
+    tile_size = 32
+
     def __init__(self, width=640, height=480, fps=60):
         """Initialize the game, takes screenw width, height
         and max fps as parameters
@@ -21,7 +23,7 @@ class Game(object):
         self.graphics = graphics.Graphics(self.size)
         self.clock = pygame.time.Clock()
 
-        self.sprite = Sprite("MyChar.bmp", 0, 0, 32, 32)
+        self.sprite = Sprite("MyChar.bmp", 0, 0, self.tile_size, self.tile_size)
 
     def loop(self):
         """The main event loop
