@@ -14,4 +14,6 @@ class Sprite(object):
         self._source_rect = pygame.Rect(left, top, width, height)
 
     def draw(self, graphics, x, y):
+        """Draw the sprite to the specified graphics object
+        """
         graphics.blit(self._image, (x, y), area=self._source_rect)
