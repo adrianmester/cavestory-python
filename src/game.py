@@ -3,7 +3,7 @@
 
 import pygame
 import graphics
-from sprite import Sprite
+from sprite import AnimatedSprite
 
 class Game(object):
     """Game class
@@ -23,7 +23,8 @@ class Game(object):
         self.graphics = graphics.Graphics(self.size)
         self.clock = pygame.time.Clock()
 
-        self.sprite = Sprite("MyChar.bmp", 0, 0, self.tile_size, self.tile_size)
+        self.sprite = AnimatedSprite("MyChar.bmp", 0, 0, self.tile_size,
+                                     self.tile_size, 15, 3)
 
     def loop(self):
         """The main event loop
@@ -37,16 +38,16 @@ class Game(object):
                 elif event.type is pygame.QUIT:
                     running = False
             
-            self.update()
+            self.clock.tick(self.fps)
+            
+            self.update(self.clock.get_time())
 
             self.draw()
 
-            self.clock.tick(self.fps)
-
-    def update(self):
+    def update(self, elapsed_time_ms):
         """Update object postion
         """
-        pass
+        self.sprite.update(elapsed_time_ms)
 
     def draw(self):
         """Draw the objects
