@@ -31,12 +31,12 @@ class Game(object):
         """
         running = True
         while running:
+            key_input = pygame.key.get_pressed()
             for event in pygame.event.get():
-                if event.type is pygame.KEYDOWN:
-                    if event.key == pygame.K_ESCAPE:
-                        running = False
-                elif event.type is pygame.QUIT:
+                if event.type is pygame.QUIT:
                     running = False
+            if key_pressed[pygame.K_ESCAPE]:
+                running = False
             
             self.clock.tick(self.fps)
             
