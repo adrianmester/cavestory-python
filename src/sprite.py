@@ -19,15 +19,20 @@ class Sprite(object):
         """
         graphics.blit(self._image, (x, y), area=self._source_rect)
 
+    def update(self, elapsed_time_ms):
+        pass
+
 
 class AnimatedSprite(Sprite):
     """Animated sprite class, ingerits Sprite
     """
 
-    def __init__(self, graphics, path, left, top, width, height, fps, num_frames):
+    def __init__(self, graphics, path, left, top, width, height, fps,
+                 num_frames):
         """Created the animated sprite
         """
-        super(AnimatedSprite, self).__init__(graphics, path, left, top, width, height)
+        super(AnimatedSprite, self).__init__(graphics, path, left, top, width,
+                                             height)
         self.frame_time = 1000.0 / fps
         self.num_frames = num_frames
         self.current_frame = 0
@@ -45,5 +50,6 @@ class AnimatedSprite(Sprite):
                 self._source_rect.x += game.Game.tile_size
             else:
                 # we're at the end, go back to the first frame
-                self._source_rect.x -= game.Game.tile_size * (self.num_frames - 1)
+                self._source_rect.x -= game.Game.tile_size * \
+                        (self.num_frames - 1)
                 self.current_frame = 0
