@@ -3,7 +3,6 @@
 
 import pygame
 import graphics
-from sprite import AnimatedSprite
 from player import Player
 
 class Game(object):
