@@ -21,3 +21,8 @@ class Graphics(object):
         """Flip the display 
         """
         pygame.display.flip()
+
+    def clear(self):
+        """Clear the screen with black
+        """
+        self._screen.fill(0)    # black

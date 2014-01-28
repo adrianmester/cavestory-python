@@ -4,6 +4,7 @@
 import pygame
 import graphics
 from sprite import AnimatedSprite
+from player import Player
 
 class Game(object):
     """Game class
@@ -23,8 +24,7 @@ class Game(object):
         self.graphics = graphics.Graphics(self.size)
         self.clock = pygame.time.Clock()
 
-        self.sprite = AnimatedSprite("MyChar.bmp", 0, 0, self.tile_size,
-                                     self.tile_size, 15, 3)
+        self.player = Player(320, 240)
 
     def loop(self):
         """The main event loop
@@ -35,9 +35,19 @@ class Game(object):
             for event in pygame.event.get():
                 if event.type is pygame.QUIT:
                     running = False
-            if key_pressed[pygame.K_ESCAPE]:
+            if key_input[pygame.K_ESCAPE]:
                 running = False
-            
+
+            # check movement
+            if key_input[pygame.K_LEFT] and key_input[pygame.K_RIGHT]:
+                self.player.stop_moving()
+            elif key_input[pygame.K_LEFT]:
+                self.player.start_moving_left()
+            elif key_input[pygame.K_RIGHT]:
+                self.player.start_moving_right()
+            else:
+                self.player.stop_moving()
+
             self.clock.tick(self.fps)
             
             self.update(self.clock.get_time())
@@ -47,10 +57,11 @@ class Game(object):
     def update(self, elapsed_time_ms):
         """Update object postion
         """
-        self.sprite.update(elapsed_time_ms)
+        self.player.update(elapsed_time_ms)
 
     def draw(self):
         """Draw the objects
         """
-        self.sprite.draw(self.graphics, 320, 240)
+        self.graphics.clear()
+        self.player.draw(self.graphics)
         self.graphics.flip()
