@@ -13,12 +13,13 @@ class Player(object):
     max_speed_x = 0.325             # pixels / ms
     slowdown_factor = 0.8
 
-    def __init__(self, x, y):
+    def __init__(self, graphics, x, y):
         self.x = x
         self.y = y
         self.acceleration_x = 0.0
         self.velocity_x = 0
         self.sprite = sprite.AnimatedSprite(
+                graphics,
                 "content/MyChar.bmp", 0, 0,
                 game.Game.tile_size, game.Game.tile_size,
                 15, 3

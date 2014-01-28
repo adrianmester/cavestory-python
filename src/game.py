@@ -24,7 +24,7 @@ class Game(object):
         self.graphics = graphics.Graphics(self.size)
         self.clock = pygame.time.Clock()
 
-        self.player = Player(320, 240)
+        self.player = Player(self.graphics, 320, 240)
 
     def loop(self):
         """The main event loop

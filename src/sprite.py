@@ -8,10 +8,10 @@ class Sprite(object):
     """Sprite class
     """
 
-    def __init__(self, path, left, top, width, height):
+    def __init__(self, graphics, path, left, top, width, height):
         """Creates a sprite from the image
         """
-        self._image = pygame.image.load(path).convert()
+        self._image = graphics.load_image(path)
         self._source_rect = pygame.Rect(left, top, width, height)
 
     def draw(self, graphics, x, y):
@@ -24,10 +24,10 @@ class AnimatedSprite(Sprite):
     """Animated sprite class, ingerits Sprite
     """
 
-    def __init__(self, path, left, top, width, height, fps, num_frames):
+    def __init__(self, graphics, path, left, top, width, height, fps, num_frames):
         """Created the animated sprite
         """
-        super(AnimatedSprite, self).__init__(path, left, top, width, height)
+        super(AnimatedSprite, self).__init__(graphics, path, left, top, width, height)
         self.frame_time = 1000.0 / fps
         self.num_frames = num_frames
         self.current_frame = 0
