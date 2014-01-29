@@ -37,7 +37,7 @@ class Game(object):
             if key_input[pygame.K_ESCAPE]:
                 running = False
 
-            # check movement
+            # Player horizonal
             if key_input[pygame.K_LEFT] and key_input[pygame.K_RIGHT]:
                 self.player.stop_moving()
             elif key_input[pygame.K_LEFT]:
@@ -46,6 +46,13 @@ class Game(object):
                 self.player.start_moving_right()
             else:
                 self.player.stop_moving()
+
+            # Player jump
+            if key_input[pygame.K_z]:
+                self.player.start_jump()
+            else:
+                # released?
+                self.player.stop_jump()
 
             self.clock.tick(self.fps)
             
