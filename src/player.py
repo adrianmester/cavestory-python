@@ -169,14 +169,14 @@ class Player(object):
 
     def start_moving_left(self):
         """Start moving the player to the left"""
-        self.acceleration_x -= self.walking_acceleration
+        self.acceleration_x = -self.walking_acceleration
         self.horizontal_facing = SpriteState.HorizontalFacing.LEFT
-    
+
     def start_moving_right(self):
         """Start moving the player to the right"""
-        self.acceleration_x += self.walking_acceleration
+        self.acceleration_x = self.walking_acceleration
         self.horizontal_facing = SpriteState.HorizontalFacing.RIGHT
-    
+
     def stop_moving(self):
         """Stop the player"""
         self.acceleration_x = 0.0
